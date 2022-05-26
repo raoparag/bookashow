@@ -17,9 +17,9 @@ The project codes to be upload to Github and shared back to us for offline revie
 
 APIs
 - retrieve list of available seats for a show
-    - GET /seats/{showID}
+    - GET /show/seats/{showID}
 - select 1 or more seats
-    - POST /seats/select
+    - POST /show/seats/select
     - params: seatIDs
     - return bookingID & seats
 - buy tickets
@@ -30,13 +30,13 @@ APIs
     - POST /show/update
     - params: showID & show details
 - Admin - update list of seats for a show
-    - POST /seats/add
+    - POST /show/seats/add
     - params: showID, seatIDs
 
 Entities
 - Show
     showID, showName
-- Seats
+- Seat
     seatID, showID, status
 - Booking
     bookingID, userId, List<Seats>, Status
@@ -48,12 +48,14 @@ Repositories
     List<Seat>
 - Bookings
     List<Booking>
+- Admins
+  - List<String>
 
 Use Case flow
 1. Admin adds shows
-    Input - {showID: 1, showName: TestShow1}
+    Input - {userID: a1, showID: 1, showName: TestShow1}
 2. Admin adds seats
-    Input - {showID: 1, seats:[A1,A2,A3]}
+    Input - {userID: a1, showID: 1, seats:[A1,A2,A3]}
 3. User retrieves seats
     Input - {showId:1}
     Output - {seats:[A1,A2,A3]}
